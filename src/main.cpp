@@ -9,13 +9,17 @@ int main() {
     inventario.agregarProducto(Producto(2, "Mouse", 20, 3));
     inventario.agregarProducto(Producto(3, "Teclado", 10, 2));
 
+    inventario.mostrarProductos();
+
     Producto* p = inventario.buscarProductoPorId(2);
 
-    if (p != nullptr) {
-        std::cout << "Producto encontrado:\n";
-        std::cout << "Nombre: " << p->getNombre() << "\n";
-        std::cout << "Cantidad: " << p->getCantidad() << "\n";
+    if (inventario.actualizarStock(1, 8)) {
+        std::cout << "Stock actualizado correctamente\n";
+    } else {
+        std::cout << "Producto no encontrado\n";
     }
+    
+    inventario.mostrarProductos();
 
     return 0;
 }

@@ -33,5 +33,12 @@ Producto* Inventario::buscarProductoPorId(int id) {
 }
 
 bool Inventario::actualizarStock(int id, int nuevaCantidad) {
+    Producto* p = buscarProductoPorId(id);
     
+    if (p == nullptr) {
+        return false;
+    }
+
+    p->setCantidad(nuevaCantidad);
+    return true; 
 }
