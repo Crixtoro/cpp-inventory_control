@@ -24,7 +24,12 @@ void Inventario::mostrarProductos() const  {
 }
 
 Producto* Inventario::buscarProductoPorId(int id) {
-
+    for (auto& prod : productos) {
+        if (prod.getId() == id) {
+            return &prod; //Dirección del producto dentro del vector
+        }
+    }
+    return nullptr;
 }
 
 bool Inventario::actualizarStock(int id, int nuevaCantidad) {
