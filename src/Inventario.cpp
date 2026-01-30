@@ -61,6 +61,16 @@ void Inventario::guardarEnArchivo(const std::string& ruta) const {
     }
 }
 
+bool Inventario::eliminarProducto(int id) {
+    for (size_t i = 0; i < productos.size(); i++) {
+        if (productos[i].getId() == id) {
+            productos.erase(productos.begin() + i);
+            return true;
+        }
+    }
+    return false; 
+}
+
 void Inventario::cargarDesdeArchivo(const std::string& ruta) {
     std::ifstream archivo(ruta);
 
@@ -72,7 +82,7 @@ void Inventario::cargarDesdeArchivo(const std::string& ruta) {
 
     std::string linea;
     std::getline(archivo, linea); //saltar encabezado
-    
+
     while (std::getline(archivo, linea)) {
         if (linea.empty()) continue;
         std::stringstream ss(linea);

@@ -9,7 +9,7 @@ int main() {
 
     inventario.agregarProducto(Producto(2, "Mouse", 20, 3));
     inventario.actualizarStock(2,13);
-
+    inventario.eliminarProducto(1);
     inventario.mostrarProductos();
 
     inventario.guardarEnArchivo("data/inventario.csv");
