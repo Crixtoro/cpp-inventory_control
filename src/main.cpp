@@ -5,21 +5,13 @@
 int main() {
     Inventario inventario; 
 
-    inventario.agregarProducto(Producto(1, "Laptop", 5, 1));
+    inventario.cargarDesdeArchivo("data/inventario.csv");
+
     inventario.agregarProducto(Producto(2, "Mouse", 20, 3));
-    inventario.agregarProducto(Producto(3, "Teclado", 10, 2));
+    inventario.actualizarStock(2,13);
 
     inventario.mostrarProductos();
 
-    Producto* p = inventario.buscarProductoPorId(2);
-
-    if (inventario.actualizarStock(1, 8)) {
-        std::cout << "Stock actualizado correctamente\n";
-    } else {
-        std::cout << "Producto no encontrado\n";
-    }
-    
-    inventario.mostrarProductos();
-
+    inventario.guardarEnArchivo("data/inventario.csv");
     return 0;
 }

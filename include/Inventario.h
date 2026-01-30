@@ -13,6 +13,10 @@ public:
     void mostrarProductos() const;
     Producto* buscarProductoPorId(int id);
     bool actualizarStock(int id, int nuevaCantidad);
+    //Métodos persistencia
+    void cargarDesdeArchivo(const std::string& ruta);
+    void guardarEnArchivo(const std::string& ruta) const;
+
 };
 
 #endif

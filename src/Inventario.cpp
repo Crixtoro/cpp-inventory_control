@@ -1,5 +1,7 @@
 #include "Inventario.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 bool Inventario::agregarProducto(const Producto& producto) {
     for(const Producto& prod : productos) {
@@ -42,3 +44,51 @@ bool Inventario::actualizarStock(int id, int nuevaCantidad) {
     p->setCantidad(nuevaCantidad);
     return true; 
 }
+
+void Inventario::guardarEnArchivo(const std::string& ruta) const {
+    std::ofstream archivo(ruta);
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo para guardar\n";
+        return;
+    }
+
+    for (const auto& prod : productos) {
+        archivo << prod.getId() << ","
+                << prod.getNombre() << ","
+                << prod.getPrecio() << ","
+                << prod.getCantidad() << "/n";
+    }
+}
+
+void Inventario::cargarDesdeArchivo(const std::string& ruta) {
+    std::ifstream archivo(ruta);
+
+    if (!archivo) {
+        return; // inventario vacío
+    }
+
+    productos.clear();
+
+    std::string linea;
+    std::getline(archivo, linea); //saltar encabezado
+    
+    while (std::getline(archivo, linea)) {
+        if (linea.empty()) continue;
+        std::stringstream ss(linea);
+        std::string idStr, nombre, precioStr, cantidadStr;
+
+        std::getline(ss, idStr, ',');
+        std::getline(ss, nombre, ',');
+        std::getline(ss, precioStr, ',');
+        std::getline(ss, cantidadStr, ',');
+
+        int id = std::stoi(idStr);
+        int cantidad = std::stoi(cantidadStr);
+        double precio = std::stod(precioStr);
+
+        productos.push_back(Producto(id, nombre, precio, cantidad));
+
+    }
+}
+
