@@ -1,14 +1,32 @@
 #include <iostream>
 #include "Producto.h"
+#include "Inventario.h"
 
 int main() {
-    Producto p(1, "Mouse", 25.5, 10);
+    Inventario inventario; 
 
-    std::cout << p.getNombre() << std::endl;
-    std::cout << p.getCantidad() << std::endl;
+    Producto p1(1, "Teclado", 50.0, 10);
+    Producto p2(2, "Mouse", 25.5, 20);
+    Producto p3(1, "Monitor", 200, 5);
 
-    p.setCantidad(20);
-    std::cout << p.getCantidad()<< std::endl;
+
+        if (inventario.agregarProducto(p1)) {
+        std::cout << "P1 agregado\n";
+    } else {
+        std::cout << "P1 NO agregado\n";
+    }
+
+    if (inventario.agregarProducto(p2)) {
+        std::cout << "P2 agregado\n";
+    } else {
+        std::cout << "P2 NO agregado\n";
+    }
+
+    if (inventario.agregarProducto(p3)) {
+        std::cout << "P3 agregado\n";
+    } else {
+        std::cout << "P3 ID duplicado\n";
+    }
 
     return 0;
 }
