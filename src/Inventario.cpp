@@ -19,6 +19,8 @@ void Inventario::mostrarProductos() const  {
         return;
     }
 
+    std::cout << "\n------- LISTA DE PRODUCTOS -------\n";
+
     for(const Producto& prod : productos) {
         std::cout << "Producto: " << prod.getNombre()
                   << " | Cantidad: " << prod.getCantidad() << "\n";               
@@ -57,7 +59,7 @@ void Inventario::guardarEnArchivo(const std::string& ruta) const {
         archivo << prod.getId() << ","
                 << prod.getNombre() << ","
                 << prod.getPrecio() << ","
-                << prod.getCantidad() << "/n";
+                << prod.getCantidad() << "\n";
     }
 }
 
@@ -81,10 +83,11 @@ void Inventario::cargarDesdeArchivo(const std::string& ruta) {
     productos.clear();
 
     std::string linea;
-    std::getline(archivo, linea); //saltar encabezado
+    //std::getline(archivo, linea); //saltar encabezado
 
     while (std::getline(archivo, linea)) {
         if (linea.empty()) continue;
+
         std::stringstream ss(linea);
         std::string idStr, nombre, precioStr, cantidadStr;
 

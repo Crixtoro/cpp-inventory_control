@@ -45,14 +45,54 @@ int main() {
                 break;
             }
             case 2:
-                std::cout << "Mostrar productos\n";
+                inventario.mostrarProductos();
                 break;
-            case 3:
+            case 3: {
                 std::cout << "Buscar producto\n";
+                int id;
+                std::cout << "Ingrese el ID del producto a buscar: ";
+                std::cin >> id;
+
+                Producto* p = inventario.buscarProductoPorId(id);
+
+                if (p != nullptr) {
+                    std::cout << "\nProducto encontrado:\n";
+                    std::cout << "ID: " << p->getId() << "\n";
+                    std::cout << "Nombre: " << p->getNombre() << "\n";
+                    std::cout << "Precio: " << p->getPrecio() << "\n";
+                    std::cout << "Cantidad: " << p->getCantidad() << "\n"; 
+                } else {
+                    std::cout << "Producto con ID " << id << " no encontrado.\n";
+                }
+                
                 break;
-            case 4:
-                std::cout << "Actualizar stock\n";
+            }
+            case 4: {
+                int id;
+                std::cout << "Ingrese el ID del producto";
+                std::cin >> id;
+
+                Producto* p = inventario.buscarProductoPorId(id);
+
+                if (p == nullptr) {
+                    std::cout << "Producto no encontrado.\n";
+                    break;
+                }
+
+                int nuevaCantidad;
+                std::cout << "Cantidad actual: " << p->getCantidad() << "\n";
+                std::cout << "Ingrese la nueva cantidad: "; 
+                std::cin >> nuevaCantidad;
+
+                if (nuevaCantidad < 0) {
+                    std::cout << "La cantidad no puede ser negativa.\n";
+                } else {
+                    p->setCantidad(nuevaCantidad);
+                    std::cout << "Stock actualizado correctamente.\n";
+                }
+
                 break;
+            }
             case 5:
                 std::cout << "Eliminar producto\n";
                 break;
