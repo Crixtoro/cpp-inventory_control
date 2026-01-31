@@ -1,4 +1,5 @@
-###Inventory Management 
+**Inventory Management**
+
 – C++ Aplicación de consola desarrollada en C++ para la gestión básica de productos, utilizando std::vector y manejo de archivos.
 
 Funcionalidades
